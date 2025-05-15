@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/guards/auth.guard';
+import { logUserGuard } from './core/guards/log-user.guard';
 
 export const routes: Routes = [
   // ?====================> Auth Layout<=================
@@ -6,25 +8,23 @@ export const routes: Routes = [
     path: '',
     loadComponent: () =>
       import('./core/layouts/auth-layout/auth-layout.component').then(
-        (m) => m.AuthLayoutComponent
+        (c) => c.AuthLayoutComponent // c = component
       ),
-    canActivate: [() => {
-      return true
-    }],
+    canActivate: [logUserGuard],
     children: [
       { path: '', redirectTo: 'signin', pathMatch: 'full' },
       {
         path: 'signin',
         loadComponent: () =>
           import('./auth/components/sign-in/sign-in.component').then(
-            (m) => m.SignInComponent
+            (c) => c.SignInComponent
           ),
       },
       {
         path: 'signup',
         loadComponent: () =>
           import('./auth/components/sign-up/sign-up.component').then(
-            (m) => m.SignUpComponent
+            (c) => c.SignUpComponent
           ),
       },
     ],
@@ -34,21 +34,25 @@ export const routes: Routes = [
     path: '',
     loadComponent: () =>
       import('./core/layouts/main-layout/main-layout.component').then(
-        (m) => m.MainLayoutComponent
-      ), children: [
-        {
-          path: 'timeline',
-          loadComponent: () => import('./pages/main/timeline/timeline.component').then(
-            (m) => m.TimelineComponent)
-        },
-      ]
+        (c) => c.MainLayoutComponent
+      ),
+    canActivate: [authGuard],
+    children: [
+      {
+        path: 'timeline',
+        loadComponent: () =>
+          import('./pages/main/timeline/timeline.component').then(
+            (c) => c.TimelineComponent
+          ),
+      },
+    ],
   },
   // ?====================> Wildcard Route<=================
   {
     path: '**',
     loadComponent: () =>
       import('./pages/main/not-found/not-found.component').then(
-        (m) => m.NotFoundComponent
+        (c) => c.NotFoundComponent
       ),
   },
 ];
