@@ -1,4 +1,4 @@
-export interface AuthUser {
+export interface SignupUser {
   name: string
   email: string
   password: string
@@ -7,3 +7,6 @@ export interface AuthUser {
   gender: string
 }
 
+export interface SignUpResponse {
+  message: string;
+}

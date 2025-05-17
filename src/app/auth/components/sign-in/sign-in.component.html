@@ -1,45 +1,189 @@
-<section class="min-h-screen bg-gray-100 flex items-center justify-center px-4">
-  <div class="bg-white shadow-md rounded-lg w-full max-w-md p-8">
-    <h1 class="text-5xl font-bold text-center text-blue-600 mb-6">linked</h1>
-    <form>
-      <div class="mb-4">
-        <input
-          type="email"
-          id="email"
-          placeholder="Email address or phone number"
-          required
-          class="w-full p-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
+<section
+  class="min-h-screen bg-gray-50 flex flex-col md:flex-row items-center justify-center p-4"
+>
+  <!-- Left Column - Branding & Value Proposition -->
+  <div
+    class="w-full md:w-1/2 lg:w-2/5 max-w-xl p-8 md:p-12 text-center md:text-left"
+  >
+    <div class="mb-8">
+      <h1 class="text-5xl font-bold text-blue-600">
+        Linked<span class="text-gray-800">Posts</span>
+      </h1>
+      <p class="text-gray-600 mt-2">Make the most of your professional life</p>
+    </div>
+    <div class="space-y-6">
+      <div class="flex items-start">
+        <div class="bg-blue-600 text-white p-2 rounded-full mr-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+        <p class="text-gray-700">Connect with professionals in your field</p>
       </div>
-      <div class="mb-4">
-        <input
-          type="password"
-          id="password"
-          placeholder="Password"
-          required
-          class="w-full p-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
+
+      <div class="flex items-start">
+        <div class="bg-blue-600 text-white p-2 rounded-full mr-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+        <p class="text-gray-700">
+          Find career opportunities that match your skills
+        </p>
       </div>
-      <button
-        type="submit"
-        class="w-full bg-blue-600 text-white py-2.5 rounded-md font-semibold hover:bg-blue-700 transition"
-      >
-        Log In
-      </button>
-      <div class="text-center my-4">
-        <a href="#" class="text-blue-600 text-sm hover:underline"
-          >Forgotten password?</a
-        >
+
+      <div class="flex items-start">
+        <div class="bg-blue-600 text-white p-2 rounded-full mr-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+        <p class="text-gray-700">Grow your professional network</p>
       </div>
-      <hr class="my-4" />
-      <div class="flex justify-center">
-        <button
-          type="button"
-          class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md font-semibold"
-        >
-          Create New Account
+    </div>
+  </div>
+
+  <!-- Right Column - Login Form -->
+  <div class="w-full md:w-1/2 lg:w-1/3 max-w-md">
+    <div class="bg-white shadow-lg rounded-lg p-8">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">
+        Welcome back
+      </h2>
+
+      <form class="space-y-4" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+        <!-- *================> Email Input <================ -->
+        <div>
+          @let emailControl = signInForm.get('email');
+          <input
+            type="email"
+            id="email"
+            placeholder="Email or Phone"
+            required
+            class="inputStyle"
+            formControlName="email"
+          />
+          <app-error-massage
+            [Control]="emailControl"
+            [name]="'Email'"
+          ></app-error-massage>
+        </div>
+        <!-- *================> Password Input <================ -->
+        <div>
+          @let passwordControl = signInForm.get('password');
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+            class="inputStyle"
+            formControlName="password"
+          />
+          <app-error-massage
+            [Control]="passwordControl"
+            [name]="'Password'"
+          ></app-error-massage>
+        </div>
+
+        <button type="submit" class="mainBtn" [disabled]="signInForm.invalid">
+          Sign in
         </button>
+
+        <!-- *================> User Aready exist <================ -->
+        @if (apiError()) {
+        <p
+          class="text-sm capitalize text-center text-red-600 my-2 cursor-pointer hover:text-red-700"
+          routerLink="/signin"
+        >
+          {{ apiError() }}
+        </p>
+        }
+
+        <div class="text-center pt-2">
+          <a
+            href="#"
+            class="text-blue-600 text-sm font-medium hover:underline cursor-pointer"
+            >Forgot password?</a
+          >
+        </div>
+      </form>
+
+      <div class="flex items-center my-6">
+        <div class="flex-grow border-t border-gray-300"></div>
+        <span class="mx-4 text-gray-500 text-sm">or</span>
+        <div class="flex-grow border-t border-gray-300"></div>
       </div>
-    </form>
+
+      <button
+        type="button"
+        class="w-full border border-gray-300 text-gray-700 py-2.5 rounded-md font-medium hover:bg-gray-50 transition duration-200 flex items-center justify-center"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 mr-2"
+          viewBox="0 0 48 48"
+        >
+          <path
+            fill="#FFC107"
+            d="M43.6 20.1H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 4.1 29.6 2 24 2 12.9 2 4 10.9 4 22s8.9 20 20 20c11.1 0 20-8.9 20-20 0-1.3-.1-2.6-.4-3.9z"
+          />
+          <path
+            fill="#FF3D00"
+            d="M6.3 12.3l6.6 4.8C14.7 12.6 19 10 24 10c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 4.1 29.6 2 24 2 16.3 2 9.7 6.1 6.3 12.3z"
+          />
+          <path
+            fill="#4CAF50"
+            d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2c-2 1.4-4.5 2.2-7.2 2.2-5.2 0-9.7-3.2-11.3-7.7l-6.6 5.1C9.7 41.9 16.3 46 24 46z"
+          />
+          <path
+            fill="#1976D2"
+            d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4.1 5.4l6.2 5.2C41.2 36.1 44 30.1 44 22c0-1.3-.1-2.6-.4-3.9z"
+          />
+        </svg>
+        Sign in with Google
+      </button>
+
+      <div class="mt-6 text-center">
+        <p class="text-gray-600 text-sm">
+          New to LinkedPosts?
+          <a
+            href="#"
+            class="text-blue-600 font-medium hover:underline hover:text-blue-700"
+            routerLink="/signup"
+            >Join now</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-6 text-center">
+      <p class="text-gray-500 text-xs">LinkedPosts Corporation © 2025</p>
+    </div>
   </div>
 </section>

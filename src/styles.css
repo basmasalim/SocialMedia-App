@@ -10,7 +10,7 @@ body {
 
 /* Form styles */
 .inputStyle {
-  @apply w-full p-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500;
+  @apply w-full px-4 py-3   text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition;
 }
 
 .labelStyle {
@@ -19,4 +19,8 @@ body {
 
 .inputAlert {
   @apply flex p-4 mb-2 text-sm font-medium text-red-950 rounded-lg bg-red-200;
+}
+
+.mainBtn {
+  @apply w-full bg-blue-600 hover:bg-[#004182] text-white py-3 rounded-md font-semibold transition duration-200 cursor-pointer disabled:bg-blue-200 disabled:cursor-not-allowed;
 }

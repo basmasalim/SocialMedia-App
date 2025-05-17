@@ -1,7 +1,9 @@
 <section
   class="min-h-screen bg-gray-100 flex items-center justify-center pt-4 pb-10 flex-col"
 >
-  <h1 class="text-6xl font-semibold text-center text-blue-600 my-4">linked</h1>
+  <h1 class="text-5xl font-bold text-blue-600 mb-4 mt-2">
+    Linked<span class="text-gray-800">Posts</span>
+  </h1>
   <div class="bg-white shadow-md rounded-lg w-full max-w-lg p-5">
     <h2 class="text-2xl font-bold text-gray-800 text-center mb-2">
       Create a new account
@@ -18,36 +20,10 @@
           required
           class="inputStyle"
         />
-
-        @if (nameControl?.errors && nameControl?.touched) {
-        <div class="inputAlert" role="alert">
-          <svg
-            class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
-            />
-          </svg>
-          <span class="sr-only">Info</span>
-          <div>
-            @if (nameControl?.getError('required')) {
-            <span>Name is required.</span>
-            } @else if (nameControl?.getError('minlength') ||
-            nameControl?.getError('maxlength') ) {
-            <span>Name requirements:</span>
-            <ul class="mt-1.5 list-disc list-inside">
-              <li>Only English letters allowed (A–Z or a–z)</li>
-              <li>Between 3 and 20 characters</li>
-              <li>No numbers or symbols allowed</li>
-            </ul>
-            }
-          </div>
-        </div>
-        }
+        <app-error-massage
+          [Control]="nameControl"
+          [name]="'Name'"
+        ></app-error-massage>
       </div>
       <!-- *================> Email Input <================ -->
       <div class="mb-4">
@@ -59,35 +35,10 @@
           required
           class="inputStyle"
         />
-        <!-- Info Alert -->
-        @if (emailControl?.errors && emailControl?.touched) {
-        <div class="inputAlert" role="alert">
-          <svg
-            class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
-            />
-          </svg>
-          <span class="sr-only">Info</span>
-          <div>
-            @if (emailControl?.getError('required')) {
-            <span> Email is required.</span>
-
-            } @if(emailControl?.getError('email')){
-            <span>Email requirements:</span>
-            <ul class="mt-1.5 list-disc list-inside">
-              <li>Email should be valid.</li>
-              <li>e.g {{ simpleEmail() }}</li>
-            </ul>
-            }
-          </div>
-        </div>
-        }
+        <app-error-massage
+          [Control]="emailControl"
+          [name]="'Email'"
+        ></app-error-massage>
       </div>
       <!-- *================> Password Input <================ -->
       <div class="mb-4">
@@ -99,42 +50,14 @@
           required
           class="inputStyle"
         />
-        <!-- Info Alert -->
-        @if (passwordControl?.errors && passwordControl?.touched ) {
-        <div class="inputAlert" role="alert">
-          <svg
-            class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
-            />
-          </svg>
-          <span class="sr-only">Info</span>
-          <div>
-            @if (passwordControl?.getError('required')) {
-            <span> Password is required.</span>
-
-            } @if(passwordControl?.getError('pattern')){
-            <span>Password requirements:</span>
-            <ul class="mt-1.5 list-disc list-inside">
-              <li>At least 8 characters</li>
-              <li>At least one uppercase letter</li>
-              <li>At least one lowercase letter</li>
-              <li>At least one number</li>
-              <li>At least one special character (e.g., ! # ?)</li>
-            </ul>
-            }
-          </div>
-        </div>
-        }
+        <app-error-massage
+          [Control]="passwordControl"
+          [name]="'Password'"
+        ></app-error-massage>
       </div>
       <!-- *================> rePassword Input <================ -->
       <div class="mb-4">
-        <!-- @let rePasswordControl = signUpForm.get('rePassword'); -->
+        @let rePasswordControl = signUpForm;
         <input
           formControlName="rePassword"
           type="password"
@@ -142,28 +65,10 @@
           required
           class="inputStyle"
         />
-        <!-- Info Alert -->
-        @if (signUpForm.getError('misMatch') &&
-        signUpForm.get('rePassword')?.touched){
-
-        <div class="inputAlert" role="alert">
-          <svg
-            class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
-            />
-          </svg>
-          <span class="sr-only">Info</span>
-          <div>
-            <span>Passwords do not match.</span>
-          </div>
-        </div>
-        }
+        <app-error-massage
+          [Control]="rePasswordControl"
+          [name]="'Password'"
+        ></app-error-massage>
       </div>
       <!-- *================> Date of birth Input <================ -->
       <div class="mb-4">
@@ -231,7 +136,7 @@
       </p>
       }
       <p
-        class="text-sm text-center text-blue-600 my-2 cursor-pointer hover:text-blue-700"
+        class="text-sm text-center text-blue-600 my-2 cursor-pointer hover:text-blue-700 hover:underline"
         routerLink="/signin"
       >
         Already have an account?

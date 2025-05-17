@@ -2,24 +2,28 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
-import { AuthUser } from '../interfaces/auth-user';
-import { LoginUser } from '../interfaces/login-user';
-import { SignUpResponse } from '../interfaces/sign-up-response';
-import { SignInResponse } from '../interfaces/sign-in-response';
+import { EndPoint } from '../enum/endPoint.enum';
+import { SignInResponse, SigninUser } from '../interfaces/signin-user';
+import { SignUpResponse, SignupUser } from '../interfaces/signup-user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  httpClient = inject(HttpClient);
-  constructor() { }
-  signUpUser(userInfo: AuthUser): Observable<SignUpResponse> {
-    return this.httpClient.post<SignUpResponse>(`${environment.baseUrl}/users/signup`, userInfo);
+  private readonly httpClient: HttpClient = inject(HttpClient);
+  private readonly baseUrl: string = environment.baseUrl;
+  signUpUser(userInfo: SignupUser): Observable<SignUpResponse> {
+    return this.httpClient.post<SignUpResponse>(
+      this.baseUrl + EndPoint.signUp,
+      userInfo
+    );
+  }
+  signInUser(userInfo: SigninUser): Observable<SignInResponse> {
+    return this.httpClient.post<SignInResponse>(
+      this.baseUrl + EndPoint.signIn,
+      userInfo
+    );
   }
 
-
-  signInUser(userInfo: LoginUser): Observable<SignInResponse> {
-    return this.httpClient.post<SignInResponse>(`${environment.baseUrl}/users/signin`, userInfo)
-  }
+  saveUserDate() { }
 }
