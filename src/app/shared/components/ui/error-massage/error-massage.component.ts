@@ -1,4 +1,4 @@
-import { Component, Input, signal, Signal } from '@angular/core';
+import { Component, input, signal, Signal } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 
 @Component({
@@ -8,9 +8,8 @@ import { AbstractControl } from '@angular/forms';
   styleUrl: './error-massage.component.css'
 })
 export class ErrorMassageComponent {
-
-  @Input() Control!: AbstractControl | null;
-  @Input() name: string = '';
+  Control = input<AbstractControl | null>(null);
+  name = input<string>('');
 
   simpleEmail: Signal<string> = signal('example@example.com');
 

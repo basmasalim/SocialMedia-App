@@ -1,4 +1,4 @@
-@if (Control?.errors && Control?.touched) {
+@if (Control()?.errors && Control()?.touched) {
 <div class="inputAlert" role="alert">
   <svg
     class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
@@ -13,23 +13,23 @@
   </svg>
   <span class="sr-only">Info</span>
   <div>
-    @if (Control?.getError('required')) {
-    <span>{{ name }} is required.</span>
-    } @else if (Control?.getError('minlength') || Control?.getError('maxlength')
-    ) {
-    <span>{{ name }} requirements:</span>
+    @if (Control()?.getError('required')) {
+    <span>{{ name() }} is required.</span>
+    } @else if (Control()?.getError('minlength') ||
+    Control()?.getError('maxlength') ) {
+    <span>{{ name() }} requirements:</span>
     <ul class="mt-1.5 list-disc list-inside">
       <li>Only English letters allowed (A–Z or a–z)</li>
       <li>Between 3 and 20 characters</li>
       <li>No numbers or symbols allowed</li>
     </ul>
-    }@else if(Control?.getError('email')){
+    }@else if(Control()?.getError('email')){
     <span>Email requirements:</span>
     <ul class="mt-1.5 list-disc list-inside">
       <li>Email should be valid.</li>
       <li>e.g {{ simpleEmail() }}</li>
     </ul>
-    }@else if(Control?.getError('pattern')){
+    }@else if(Control()?.getError('pattern')){
     <span>Password requirements:</span>
     <ul class="mt-1.5 list-disc list-inside">
       <li>At least 8 characters</li>
@@ -38,7 +38,7 @@
       <li>At least one number</li>
       <li>At least one special character (e.g., ! # ?)</li>
     </ul>
-    }@else if (Control?.getError('misMatch')) {
+    }@else if (Control()?.getError('misMatch')) {
     <span>Passwords do not match.</span>
     }
   </div>

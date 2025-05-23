@@ -57,8 +57,6 @@ export class SignUpComponent implements OnDestroy, OnInit {
     );
   }
 
-
-
   validateRePassword(form: AbstractControl) {
     const password = form.get('password')?.value;
     const rePassword = form.get('rePassword')?.value;
@@ -71,11 +69,9 @@ export class SignUpComponent implements OnDestroy, OnInit {
   }
 
   onSubmit() {
-    console.log(this.signUpForm);
     if (this.signUpForm.invalid) {
       this.signUpForm.markAllAsTouched();
     } else {
-
       this.authService.signUpUser(this.signUpForm.value)
         .pipe(takeUntil(this.destroy$))
         .subscribe({
@@ -84,7 +80,6 @@ export class SignUpComponent implements OnDestroy, OnInit {
             this.router.navigate(['/signin']);
           },
           error: (err) => {
-            console.log(err);
             this.apiError.set(err.error.error);
           },
         });

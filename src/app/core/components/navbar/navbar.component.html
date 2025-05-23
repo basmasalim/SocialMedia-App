@@ -5,110 +5,200 @@
       Linked<span class="text-gray-800">Posts</span>
     </h1>
 
-    <!-- Mobile: profile + hamburger -->
-    <div class="flex items-center md:hidden space-x-4">
-      <img
-        src="images/profile.png"
-        alt="Profile"
-        class="w-8 h-8 rounded-full"
-      />
-      <button
-        data-collapse-toggle="mobile-menu"
-        type="button"
-        class="text-gray-500 cursor-pointer p-2 rounded-md focus:outline-none"
-        aria-controls="mobile-menu"
-        aria-expanded="false"
-      >
-        <svg
-          class="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+    <div class="w-[100%] flex items-center md:justify-between justify-end">
+      <!-- Mobile: profile + hamburger -->
+      <div class="flex items-center md:hidden space-x-4">
+        <button
+          data-collapse-toggle="mobile-menu"
+          type="button"
+          class="text-gray-500 cursor-pointer p-2 rounded-md focus:outline-none"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M4 6h16M4 12h16M4 18h16"
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </div>
+      <!-- Desktop -->
+      <div class="hidden md:flex items-center m-auto">
+        <!-- Links -->
+        <ul class="flex space-x-6 text-sm font-medium">
+          <li class="flex flex-col items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-blue-600"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+              />
+            </svg>
+            <a
+              class="block cursor-pointer py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0"
+              >Home</a
+            >
+          </li>
+          <li
+            class="flex flex-col items-center cursor-not-allowed text-gray-700 hover:text-blue-600"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <a>My Network</a>
+          </li>
+          <li
+            class="flex flex-col items-center cursor-not-allowed text-gray-700 hover:text-blue-600"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
+                clip-rule="evenodd"
+              />
+              <path
+                d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"
+              />
+            </svg>
+            <a>Jobs</a>
+          </li>
+          <li
+            class="flex flex-col items-center cursor-not-allowed text-gray-700 hover:text-blue-600"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <a>Messaging</a>
+          </li>
+          <li
+            class="flex flex-col items-center cursor-not-allowed text-gray-700 hover:text-blue-600"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"
+              />
+            </svg>
+            <a>Notifications</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Profile Dropdown -->
+      <div class="flex items-center relative">
+        <button
+          id="profileDropdownButton"
+          data-dropdown-toggle="profileDropdown"
+          class="w-9 h-9 rounded-full overflow-hidden border-2 border-transparent hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <img
+            src="images/profile.png"
+            alt="Profile"
+            class="w-full h-full object-cover"
           />
-        </svg>
-      </button>
-    </div>
+        </button>
 
-    <!-- Desktop: nav + profile -->
-    <div class="hidden md:flex items-center">
-      <ul class="flex space-x-6 text-sm font-medium justify-center item">
-        <li>
-          <a
-            class="block cursor-pointer py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0"
-            >Home</a
+        <!-- Dropdown Menu -->
+        <div
+          id="profileDropdown"
+          class="z-50 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-44 absolute mt-2"
+        >
+          <ul
+            class="py-2 text-sm text-gray-700"
+            aria-labelledby="profileDropdownButton"
           >
-        </li>
-        <li>
-          <a class="text-gray-700 cursor-not-allowed hover:text-blue-600"
-            >My Network</a
-          >
-        </li>
-        <li>
-          <a class="text-gray-700 cursor-not-allowed hover:text-blue-600"
-            >Jobs</a
-          >
-        </li>
-        <li>
-          <a class="text-gray-700 cursor-not-allowed hover:text-blue-600"
-            >Messaging</a
-          >
-        </li>
-        <li>
-          <a class="text-gray-700 cursor-not-allowed hover:text-blue-600"
-            >Notifications</a
-          >
-        </li>
-      </ul>
-    </div>
-
-    <div class="hidden md:flex items-center">
-      <img
-        src="images/profile.png"
-        alt="Profile"
-        class="w-9 h-9 rounded-full cursor-pointer hover:ring-2 hover:ring-blue-500"
-      />
+            <li>
+              <a routerLink="" class="block px-4 py-2 hover:bg-gray-100"
+                >Profile</a
+              >
+            </li>
+            <li>
+              <a routerLink="" class="block px-4 py-2 hover:bg-gray-100"
+                >Settings</a
+              >
+            </li>
+            <li>
+              <a class="block px-4 py-2 text-red-500 hover:bg-gray-100"
+                >SignOut</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- Mobile menu -->
-  <div class="w-full hidden md:hidden md:w-auto" id="mobile-menu">
+  <div class="w-full hidden md:hidden" id="mobile-menu">
     <ul
-      class="font-medium m-2 gap-0.5 flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white"
+      class="font-medium m-2 gap-0.5 flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50"
     >
       <li>
         <a
-          class="block cursor-pointer py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0"
+          class="block cursor-pointer py-2 px-3 text-white bg-blue-700 rounded-sm"
           >Home</a
         >
       </li>
       <li>
         <a
-          class="block cursor-not-allowed py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+          class="block cursor-not-allowed py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100"
           >My Network</a
         >
       </li>
       <li>
         <a
-          class="block cursor-not-allowed py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+          class="block cursor-not-allowed py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100"
           >Jobs</a
         >
       </li>
       <li>
         <a
-          class="block cursor-not-allowed py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+          class="block cursor-not-allowed py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100"
           >Messaging</a
         >
       </li>
       <li>
         <a
-          class="block cursor-not-allowed py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+          class="block cursor-not-allowed py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100"
           >Notifications</a
         >
       </li>

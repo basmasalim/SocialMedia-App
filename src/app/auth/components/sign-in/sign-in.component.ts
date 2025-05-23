@@ -38,7 +38,6 @@ export class SignInComponent implements OnDestroy, OnInit {
   }
 
   onSubmit() {
-    console.log(this.signInForm);
     if (this.signInForm.invalid) {
       this.signInForm.markAllAsTouched();
     } else {
@@ -49,12 +48,12 @@ export class SignInComponent implements OnDestroy, OnInit {
           next: (res) => {
             this.apiError.set('');
             localStorage.setItem('token', res.token);
+            this.authService.saveUserDate();
             timer(1000).pipe(takeUntil(this.destroy$)).subscribe(() => {
               this.router.navigate(['/timeline']);
             });
           },
           error: (err) => {
-            console.log(err);
             this.apiError.set(err.error.error);
           },
         });
