@@ -12,9 +12,6 @@ import { AuthService } from './../../../auth/services/auth.service';
 export class NavbarComponent implements OnInit {
   private readonly authService = inject(AuthService);
   private readonly flowbiteService = inject(FlowbiteService);
-  isLoggedIn: any;
-
-
 
   ngOnInit(): void {
     this.flowbite();
@@ -24,5 +21,9 @@ export class NavbarComponent implements OnInit {
     this.flowbiteService.loadFlowbite((flowbite) => {
       initFlowbite();
     });
+  }
+
+  signOut() {
+    this.authService.signOutUser();
   }
 }

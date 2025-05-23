@@ -6,12 +6,14 @@ import { EndPoint } from '../enum/endPoint.enum';
 import { SignInResponse, SigninUser } from '../interfaces/signin-user';
 import { SignUpResponse, SignupUser } from '../interfaces/signup-user';
 import { jwtDecode } from 'jwt-decode'
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private readonly httpClient: HttpClient = inject(HttpClient);
+  private readonly router = inject(Router);
   private readonly baseUrl: string = environment.baseUrl;
 
   userDate: BehaviorSubject<any> = new BehaviorSubject(null);
@@ -33,5 +35,11 @@ export class AuthService {
     if (localStorage.getItem('token')) {
       this.userDate.next(jwtDecode(localStorage.getItem('token')!));
     }
+  }
+
+  signOutUser() {
+    localStorage.removeItem('token');
+    this.userDate.next(null);
+    this.router.navigate(['/signin']);
   }
 }
