@@ -24,3 +24,7 @@ body {
 .mainBtn {
   @apply w-full bg-blue-600 hover:bg-[#004182] text-white py-3 rounded-md font-semibold transition duration-200 cursor-pointer disabled:bg-blue-200 disabled:cursor-not-allowed;
 }
+
+.user-img {
+  @apply w-12 h-12 rounded-full;
+}
