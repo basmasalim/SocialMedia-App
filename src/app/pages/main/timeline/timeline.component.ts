@@ -2,17 +2,21 @@ import { Component, inject, OnInit } from '@angular/core';
 import { PostsService } from '../../../core/services/posts/posts.service';
 import { AllPostsResponse } from './../../../core/interfaces/posts/all-posts';
 import { DatePipe } from '@angular/common';
+import { LoaderSectionSkeletonComponent } from "../../../core/components/loader-section-skeleton/loader-section-skeleton.component";
+import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 
 @Component({
   selector: 'app-timeline',
-  imports: [DatePipe],
+  imports: [DatePipe, LoaderSectionSkeletonComponent, InfiniteScrollDirective],
   templateUrl: './timeline.component.html',
-  styleUrl: './timeline.component.css'
+  styleUrl: './timeline.component.css',
 })
 export class TimelineComponent implements OnInit {
   private readonly postsService = inject(PostsService);
 
   allPosts!: AllPostsResponse;
+  counter: number = 1;
+  isLoading: boolean = false;
 
   ngOnInit(): void {
     this.getAllPosts();
@@ -24,7 +28,18 @@ export class TimelineComponent implements OnInit {
         console.log(res);
         this.allPosts = res;
       },
-    })
+    });
+  }
+
+  onScroll() {
+    this.isLoading = true;
+    this.counter++;
+    this.postsService.getAllPosts(this.counter).subscribe({
+      next: (res) => {
+        this.isLoading = false;
+        this.allPosts.posts.push(...res.posts);
+      },
+    });
   }
 }
 

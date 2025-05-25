@@ -23,8 +23,10 @@ export class PostsService {
     );
   }
 
-  getAllPosts(): Observable<AllPostsResponse> {
-    return this.httpClient.get<AllPostsResponse>(this.baseUrl + PostsEndpoint.GET_ALL_POSTS);
+  getAllPosts(page: number = 1): Observable<AllPostsResponse> {
+    return this.httpClient.get<AllPostsResponse>(
+      this.baseUrl + PostsEndpoint.GET_ALL_POSTS + `?page=${page}&limit=5`
+    );
   }
 
   getUserPosts(postId: string): Observable<UserPostsResponse> {
