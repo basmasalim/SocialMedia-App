@@ -14,7 +14,4 @@ export class RecentPostComponent {
   @Input() postText = '';
   @Input() postImg = '';
   @Input() postImgAlt = '';
-  @Input() commentUserImg = '';
-  @Input() commentUserName = '';
-  @Input() commentText = '';
 }

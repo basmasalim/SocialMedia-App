@@ -4,15 +4,18 @@ import { AllPostsResponse } from './../../../core/interfaces/posts/all-posts';
 import { LoaderSectionSkeletonComponent } from "../../../core/components/loader-section-skeleton/loader-section-skeleton.component";
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { RecentPostComponent } from "../../../core/components/recent-post/recent-post.component";
+import { CommentItemComponent } from "../../../core/components/comment-item/comment-item.component";
+import { AddCommentComponent } from "../../../core/components/add-comment/add-comment.component";
 
 @Component({
   selector: 'app-timeline',
-  imports: [LoaderSectionSkeletonComponent, InfiniteScrollDirective, RecentPostComponent],
+  imports: [LoaderSectionSkeletonComponent, InfiniteScrollDirective, RecentPostComponent, CommentItemComponent, AddCommentComponent],
   templateUrl: './timeline.component.html',
   styleUrl: './timeline.component.css',
 })
 export class TimelineComponent implements OnInit {
   private readonly postsService = inject(PostsService);
+  expandedPosts: { [postId: string]: boolean } = {};
 
   allPosts!: AllPostsResponse;
   counter: number = 1;
@@ -41,6 +44,12 @@ export class TimelineComponent implements OnInit {
       },
     });
   }
+
+
+  showMoreComments(postId: string) {
+    this.expandedPosts[postId] = true;
+  }
+
 }
 
 

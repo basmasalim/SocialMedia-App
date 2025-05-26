@@ -1,18 +1,51 @@
-@if(allPosts){ @for (post of allPosts.posts; track $index) {
+@if(allPosts){
+<section class="rounded xl:w-2/5 lg:w-3/5 md:w-2/3 w-5/6 mx-auto my-14">
+  <article>
+    @for (post of allPosts.posts; track $index) {
+    <app-recent-post
+      [userImg]="post.user.photo"
+      [userName]="post.user.name"
+      [postDate]="post.createdAt"
+      [postText]="post.body!"
+      [postImg]="post.image!"
+      [postImgAlt]="post.body!"
+    ></app-recent-post>
+    <!-- show more comments -->
+    @if (!expandedPosts[post._id] && post.comments.length > 1){
+    <div class="p-4 bg-white">
+      <button
+        (click)="showMoreComments(post._id)"
+        class="cursor-pointer text-blue-800 capitalize"
+      >
+        show more comments
+      </button>
+    </div>
+    }
+    <div class="max-h-[250px] overflow-y-auto bg-white px-6 pb-2.5">
+      <div class="bg-gray-50 rounded-lg shadow-sm">
+        @if (!expandedPosts[post._id]) {
+        <app-comment-item
+          [commentUserName]="post.comments[0].commentCreator.name"
+          [commentText]="post.comments[0].content!"
+          [commentUserDate]="post.comments[0].createdAt"
+        ></app-comment-item>
+        } @else { @for (comment of post.comments; track $index) {
+        <app-comment-item
+          [commentUserName]="comment.commentCreator.name"
+          [commentText]="comment.content!"
+          [commentUserDate]="comment.createdAt"
+        ></app-comment-item>
+        } }
+      </div>
+    </div>
+    <div class="mb-7">
+      <app-add-comment></app-add-comment>
+    </div>
 
-<app-recent-post
-  [userImg]="post.user.photo"
-  [userName]="post.user.name"
-  [postDate]="post.createdAt"
-  [postText]="post.body!"
-  [postImg]="post.image!"
-  [postImgAlt]="post.body!"
-  [commentUserImg]="post.user.photo"
-  [commentUserName]="post.user.name"
-  [commentText]="post.body!"
-></app-recent-post>
-
-} }@else {
+    }
+  </article>
+</section>
+}@else {
 <app-loader-section-skeleton></app-loader-section-skeleton>
 }
 
