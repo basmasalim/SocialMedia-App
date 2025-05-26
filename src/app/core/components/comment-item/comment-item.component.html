@@ -3,17 +3,17 @@
   <div class="flex items-start space-x-4 mb-6">
     <img
       src="images/profile.png"
-      [alt]="commentUserName"
+      [alt]="comment().commentCreator.name"
       class="w-10 h-10 rounded-full object-cover border border-gray-300"
     />
     <div class="flex-1">
       <div class="flex justify-between items-center">
         <p class="text-sm font-medium text-gray-800">
-          {{ commentUserName }}
+          {{ comment().commentCreator.name }}
         </p>
         <div class="flex items-center space-x-2">
           <span class="text-xs text-gray-400">
-            {{ commentUserDate | date : "MMMM dd yyyy hh:mm a" }}</span
+            {{ comment().createdAt | date : "MMMM dd yyyy hh:mm a" }}</span
           >
           <button class="cursor-pointer text-gray-500">
             <img
@@ -24,7 +24,7 @@
           </button>
         </div>
       </div>
-      <p class="text-sm text-gray-700 mt-1">{{ commentText }}</p>
+      <p class="text-sm text-gray-700 mt-1">{{ comment().content }}</p>
     </div>
   </div>
 </div>

@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, input, InputSignal } from '@angular/core';
+import { Comment } from '../../interfaces/posts/all-posts';
 
 @Component({
   selector: 'app-comment-item',
@@ -8,10 +9,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './comment-item.component.css'
 })
 export class CommentItemComponent {
-  @Input() commentUserName = '';
-  @Input() commentText = '';
-  @Input() commentUserDate = '';
-  @Input() commentUserNameF = '';
-  @Input() commentTextF = '';
-  @Input() commentUserDateF = '';
+  comment: InputSignal<Comment> = input.required({});
 }

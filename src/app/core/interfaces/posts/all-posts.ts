@@ -1,7 +1,5 @@
 export interface AllPosts {
-}
 
-export interface AllPostsResponse {
   message: string;
   paginationInfo: PaginationInfo;
   posts: Post[];

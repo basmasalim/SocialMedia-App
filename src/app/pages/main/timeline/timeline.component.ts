@@ -1,23 +1,21 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { PostsService } from '../../../core/services/posts/posts.service';
-import { AllPostsResponse } from './../../../core/interfaces/posts/all-posts';
 import { LoaderSectionSkeletonComponent } from "../../../core/components/loader-section-skeleton/loader-section-skeleton.component";
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { RecentPostComponent } from "../../../core/components/recent-post/recent-post.component";
-import { CommentItemComponent } from "../../../core/components/comment-item/comment-item.component";
-import { AddCommentComponent } from "../../../core/components/add-comment/add-comment.component";
+import { Post } from '../../../core/interfaces/posts/all-posts';
 
 @Component({
   selector: 'app-timeline',
-  imports: [LoaderSectionSkeletonComponent, InfiniteScrollDirective, RecentPostComponent, CommentItemComponent, AddCommentComponent],
+  imports: [LoaderSectionSkeletonComponent, InfiniteScrollDirective, RecentPostComponent],
   templateUrl: './timeline.component.html',
   styleUrl: './timeline.component.css',
 })
 export class TimelineComponent implements OnInit {
   private readonly postsService = inject(PostsService);
-  expandedPosts: { [postId: string]: boolean } = {};
 
-  allPosts!: AllPostsResponse;
+  allPosts = signal<Post[]>([])
+
   counter: number = 1;
   isLoading: boolean = false;
 
@@ -29,7 +27,7 @@ export class TimelineComponent implements OnInit {
     this.postsService.getAllPosts().subscribe({
       next: (res) => {
         console.log(res);
-        this.allPosts = res;
+        this.allPosts.set(res.posts);
       },
     });
   }
@@ -40,16 +38,10 @@ export class TimelineComponent implements OnInit {
     this.postsService.getAllPosts(this.counter).subscribe({
       next: (res) => {
         this.isLoading = false;
-        this.allPosts.posts.push(...res.posts);
+        this.allPosts.update((posts) => [...posts, ...res.posts]);
       },
     });
   }
-
-
-  showMoreComments(postId: string) {
-    this.expandedPosts[postId] = true;
-  }
-
 }
 
 
