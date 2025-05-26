@@ -1,13 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { PostsService } from '../../../core/services/posts/posts.service';
 import { AllPostsResponse } from './../../../core/interfaces/posts/all-posts';
-import { DatePipe } from '@angular/common';
 import { LoaderSectionSkeletonComponent } from "../../../core/components/loader-section-skeleton/loader-section-skeleton.component";
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
+import { RecentPostComponent } from "../../../core/components/recent-post/recent-post.component";
 
 @Component({
   selector: 'app-timeline',
-  imports: [DatePipe, LoaderSectionSkeletonComponent, InfiniteScrollDirective],
+  imports: [LoaderSectionSkeletonComponent, InfiniteScrollDirective, RecentPostComponent],
   templateUrl: './timeline.component.html',
   styleUrl: './timeline.component.css',
 })
