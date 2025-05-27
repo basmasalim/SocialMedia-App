@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, input, InputSignal } from '@angular/core';
-import { Comment } from '../../interfaces/posts/all-posts';
+import { Comment } from '../../../../core/interfaces/posts/all-posts';
 
 @Component({
   selector: 'app-comment-item',

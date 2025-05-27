@@ -72,6 +72,10 @@
 
   <!-- Add comment button -->
   <div>
-    <app-add-comment></app-add-comment>
+    <app-add-comment
+      (onSubmitComment)="handleNewComment(post()._id)"
+      [comment]="comment"
+    >
+    </app-add-comment>
   </div>
 </div>

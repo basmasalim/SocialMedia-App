@@ -2,7 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { PostsService } from '../../../core/services/posts/posts.service';
 import { LoaderSectionSkeletonComponent } from "../../../core/components/loader-section-skeleton/loader-section-skeleton.component";
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
-import { RecentPostComponent } from "../../../core/components/recent-post/recent-post.component";
+import { RecentPostComponent } from "../../../shared/components/ui/recent-post/recent-post.component";
 import { Post } from '../../../core/interfaces/posts/all-posts';
 
 @Component({
