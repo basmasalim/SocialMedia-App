@@ -1,8 +1,9 @@
 import { DatePipe } from '@angular/common';
-import { Component, input, InputSignal, signal } from '@angular/core';
-import { Post } from '../../../../core/interfaces/posts/all-posts';
+import { Component, inject, input, InputSignal, signal } from '@angular/core';
+import { Comment, Post } from '../../../../core/interfaces/posts/all-posts';
 import { CommentItemComponent } from '../comment-item/comment-item.component';
 import { AddCommentComponent } from '../add-comment/add-comment.component';
+import { CommentsService } from '../../../../core/services/comments/comments.service';
 
 @Component({
   selector: 'app-recent-post',
@@ -11,8 +12,11 @@ import { AddCommentComponent } from '../add-comment/add-comment.component';
   styleUrl: './recent-post.component.css',
 })
 export class RecentPostComponent {
+  private readonly commentsService = inject(CommentsService)
   post: InputSignal<Post> = input.required();
   comment = signal<string>('');
+
+  isCommentLoading = signal(false);
 
   expandedPosts: { [postId: string]: boolean } = {};
 
@@ -24,9 +28,17 @@ export class RecentPostComponent {
     this.expandedPosts[postId] = false;
   }
 
-  handleNewComment(postId: string) {
-    console.log('New comment for post:', postId);
-    console.log('Comment content:', this.comment());
+  handleNewComment(postId: string, post: Post): void {
+    this.isCommentLoading.set(true);
+    this.commentsService.createComment({
+      content: this.comment(),
+      post: postId
+    }).subscribe({
+      next: (res) => {
+        console.log(res);
+        post.comments = res.comments as Comment[]
+        this.isCommentLoading.set(false);
+      }
+    })
   }
-
 }

@@ -13,7 +13,7 @@ export class CommentsService {
   private readonly baseUrl: string = environment.baseUrl;
   constructor() { }
 
-  createComment(): Observable<CreateComments> {
-    return this.httpClient.post<CreateComments>(this.baseUrl + CommentEndpoint.CREATE_COMMENT, {});
+  createComment(comment: {}): Observable<CreateComments> {
+    return this.httpClient.post<CreateComments>(this.baseUrl + CommentEndpoint.CREATE_COMMENT, comment);
   }
 }

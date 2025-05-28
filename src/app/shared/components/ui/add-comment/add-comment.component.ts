@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, WritableSignal } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, Signal, WritableSignal, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 export class AddCommentComponent implements OnInit {
   @Output() onSubmitComment = new EventEmitter<void>();
   @Input() comment!: WritableSignal<string>;
+  @Input() isCommentLoading!: WritableSignal<boolean>;
 
   commentTextValue: string = '';
 

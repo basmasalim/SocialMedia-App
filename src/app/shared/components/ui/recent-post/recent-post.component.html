@@ -73,8 +73,9 @@
   <!-- Add comment button -->
   <div>
     <app-add-comment
-      (onSubmitComment)="handleNewComment(post()._id)"
+      (onSubmitComment)="handleNewComment(post()._id, post())"
       [comment]="comment"
+      [isCommentLoading]="isCommentLoading"
     >
     </app-add-comment>
   </div>
