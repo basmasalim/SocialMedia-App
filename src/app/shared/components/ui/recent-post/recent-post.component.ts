@@ -12,12 +12,12 @@ import { CommentsService } from '../../../../core/services/comments/comments.ser
   styleUrl: './recent-post.component.css',
 })
 export class RecentPostComponent {
-  private readonly commentsService = inject(CommentsService)
+  private readonly commentsService = inject(CommentsService);
+
   post: InputSignal<Post> = input.required();
   comment = signal<string>('');
 
   isCommentLoading = signal(false);
-
   expandedPosts: { [postId: string]: boolean } = {};
 
   showMoreComments(postId: string) {

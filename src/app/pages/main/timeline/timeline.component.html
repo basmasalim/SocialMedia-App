@@ -1,5 +1,6 @@
 @if(allPosts()){
-<section class="rounded xl:w-2/5 lg:w-3/5 md:w-2/3 w-5/6 mx-auto my-14">
+<app-add-new-post (onSubmitPost)="createPost($event)"></app-add-new-post>
+<section class="rounded xl:w-2/5 lg:w-3/5 md:w-2/3 w-5/6 mx-auto my-8">
   <article>
     @for (post of allPosts(); track $index) {
     <app-recent-post [post]="post"></app-recent-post>
