@@ -4,10 +4,11 @@ import { Comment, Post } from '../../../../core/interfaces/posts/all-posts';
 import { CommentItemComponent } from '../comment-item/comment-item.component';
 import { AddCommentComponent } from '../add-comment/add-comment.component';
 import { CommentsService } from '../../../../core/services/comments/comments.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-recent-post',
-  imports: [DatePipe, CommentItemComponent, AddCommentComponent],
+  imports: [DatePipe, CommentItemComponent, AddCommentComponent, RouterLink],
   templateUrl: './recent-post.component.html',
   styleUrl: './recent-post.component.css',
 })

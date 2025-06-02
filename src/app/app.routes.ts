@@ -45,6 +45,13 @@ export const routes: Routes = [
             (c) => c.TimelineComponent
           ),
       },
+      {
+        path: 'post-details/:id',
+        loadComponent: () =>
+          import('./pages/main/post-details/post-details.component').then(
+            (c) => c.PostDetailsComponent
+          ),
+      },
     ],
   },
   // ?====================> Wildcard Route<=================

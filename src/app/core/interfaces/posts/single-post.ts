@@ -1,8 +1,4 @@
 export interface SinglePost {
-
-}
-
-export interface SinglePostResponse {
   message: string
   post: Post
 }
